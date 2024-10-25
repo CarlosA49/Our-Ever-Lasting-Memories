@@ -1,0 +1,227 @@
+body {
+    background-color: #ffe4e1; /* Light pink background */
+    color: #4b0082; /* Dark purple for text */
+    font-family: 'Arial', sans-serif;
+    background-image: url('Hearts.jpg'); /* Replace with the actual path to your image */
+    background-size: cover; /* Make sure the image covers the entire background */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; 
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-y: auto; /* Enable vertical scrolling */
+    min-height: 100vh; /* Make sure body takes at least full viewport height */
+}
+
+
+/* Navigation bar styling */
+ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px; /* Increase gap to give more space between items */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: #ef93c9;
+    padding: 20px;
+    z-index: 10;
+    margin: 0;
+}
+
+/* List item styles for navigation */
+li.Options {
+    background-color: #ee89c4; /* Lighter pink for items */
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s, border-radius 0.3s, color 0.1s, transform 0.3s; /* Added transform transition */
+    cursor: pointer;
+    color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow to list items */
+}
+
+/* Hover effects for navigation */
+li.Options:hover {
+    background-color: rgb(159, 108, 4); /* Darker background color on hover */
+    border-radius: 20px;
+    color: white;
+    transform: translateY(-3px); /* Slight lift on hover */
+}
+
+/* Link styles */
+ul li a {
+    color: inherit; /* Inherit color from parent (li) */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+ul li a:hover {
+    color: white; /* Change text color to white on hover */
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    max-width: 1000px; /* Optional, to restrict content width */
+    margin: 0 auto; /* Center the content */
+    overflow-y: auto; /* Allow scrolling inside container */
+}
+
+
+/* Header styles */
+header {
+    margin-bottom: 40px;
+    animation: bounce 1s infinite; /* Bouncing animation */
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow */
+    animation: fadeIn 1.5s ease forwards;
+    opacity: 0; /* Start invisible */
+}
+
+/* Section styles */
+section {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* More opaque background */
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+    animation: slideIn 1s ease forwards;
+    opacity: 0; /* Start invisible */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for interactivity */
+}
+
+section:hover {
+    transform: translateY(-5px); /* Slightly lift on hover */
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5); /* Deepen shadow on hover */
+}
+
+/* Fun facts list style */
+section ul {
+    list-style-type: none;
+    padding: 0;
+    animation: fadeIn 2s ease forwards; /* Fade-in for lists */
+    opacity: 0; /* Start invisible */
+}
+
+/* Footer style */
+footer {
+    margin-top: 40px auto;
+    padding: 20px;
+    font-style: italic;
+    text-align: center; /* Center the text */
+    background-color:  #f6e3f2;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+    animation: slideIn 1s ease forwards;
+    opacity: 0; /* Start invisible */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Background Hearts */
+body::before {
+    content: '';
+    background-image: url('Background/Heart1.jpg'); /* Replace with your heart image URL */
+    background-size: cover;
+    opacity: 0.1; /* Light opacity for subtle effect */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0; /* Behind all other content */
+}
+
+/* Add more animations to headers */
+h2 {
+    margin: 20px 0;
+    animation: fadeInUp 1s ease forwards; /* Fade in with upward motion */
+    opacity: 0; /* Start invisible */
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Button styles for future use */
+button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition for interactivity */
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green */
+    transform: translateY(-3px); /* Lift on hover */
+}
+
+section.couple-story {
+    margin: 20px auto;
+    padding: 30px; /* Increased padding for more space around content */
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideIn 1s ease forwards;
+    opacity: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add more line height for better text readability */
+section.couple-story p {
+    line-height: 1.6; /* Increase line height for better readability */
+    margin-bottom: 15px; /* Add more space between paragraphs */
+}
+
+/* Keep the hover effect */
+section.couple-story:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+}

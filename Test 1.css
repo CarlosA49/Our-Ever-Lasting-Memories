@@ -1,0 +1,186 @@
+body {
+    background-color: #ffe4e1; /* Light pink background */
+    color: #4b0082; /* Dark purple for text */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden; /* Hide overflow for background hearts */
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header styles */
+header {
+    margin-bottom: 40px;
+    animation: bounce 1s infinite; /* Bouncing animation */
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow */
+    animation: fadeIn 1.5s ease forwards;
+    opacity: 0; /* Start invisible */
+}
+
+/* Section styles */
+section {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* More opaque background */
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+    animation: slideIn 1s ease forwards;
+    opacity: 0; /* Start invisible */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for interactivity */
+}
+
+section:hover {
+    transform: translateY(-5px); /* Slightly lift on hover */
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5); /* Deepen shadow on hover */
+}
+
+/* Fun facts list style */
+section ul {
+    list-style-type: none;
+    padding: 0;
+    animation: fadeIn 2s ease forwards; /* Fade-in for lists */
+    opacity: 0; /* Start invisible */
+}
+
+/* Footer style */
+footer {
+    margin-top: 40px;
+    font-style: italic;
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Background Hearts */
+body::before {
+    content: '';
+    background-image: url('Background\ Heart\ 1.jpg'); /* Replace with your heart image URL */
+    background-size: cover;
+    opacity: 0.1; /* Light opacity for subtle effect */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0; /* Behind all other content */
+}
+
+/* Add more animations to headers */
+h2 {
+    margin: 20px 0;
+    animation: fadeInUp 1s ease forwards; /* Fade in with upward motion */
+    opacity: 0; /* Start invisible */
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Button styles for future use */
+button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition for interactivity */
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green */
+    transform: translateY(-3px); /* Lift on hover */
+}
+
+
+/* Navigation bar styling */
+ul {
+    list-style-type: none;
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Keep the nav items aligned in the center vertically */
+    position: fixed;
+    top: 0; /* Stick to the top */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: 100%; /* Full width */
+    background-color: #ef93c9; /* Light pink background for the nav */
+    padding: 20px;
+    z-index: 10; /* Ensure it stays on top */
+    margin: 0;
+}
+
+/* List item styles */
+li {
+    background-color: #ee89c4; /* Lighter pink for items */
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s, border-radius 0.3s, color 0.1s, transform 0.3s; /* Added transform transition */
+    cursor: pointer;
+    color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow to list items */
+}
+
+/* Hover effects */
+li:hover {
+    background-color: rgb(159, 108, 4); /* Darker background color on hover */
+    border-radius: 20px;
+    color: white;
+    transform: translateY(-3px); /* Slight lift on hover */
+}
+
+/* Link styles */
+ul li a {
+    color: inherit; /* Inherit color from parent (li) */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+ul li a:hover {
+    color: white; /* Change text color to white on hover */
+}

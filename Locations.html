@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Everlasting Memories</title>
+    <link rel="stylesheet" href="Locations.css">
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIZRXygES1o9YtkaorB8e6vPs8omT3wJc&callback=initMap"
+        async defer></script>
+
+    <script>
+        let map;
+        let userMarker; // Marker for user's location
+        let userLocation;
+
+        const locations = [
+            { lat: 14.592450, lng: 120.973320, title: 'Philippines, Intramuros/ Our Late Night Walk' },
+            { lat: 14.3261696, lng: 120.9368576, title: 'Carlos Dasma Home' },
+            { lat: 14.6753, lng: 120.9389, title: 'Ishi Tanza Home' },
+            { lat: 14.57270622253418, lng: 120.9912109375, title: 'Carlos Taft Manila Condo Home' },
+            { lat: 14.5667, lng: 120.9833, title: 'Ishi Taft Manila Condo Home' },
+            { lat: 14.5649439, lng: 120.9930992, title: 'Ishi School, De La Salle University Taft Manila' },
+            { lat: 14.576686, lng: 120.983879, title: 'Robinsons Place Manila/ Our chill place' },
+            { lat: 14.5872244, lng: 120.9819008, title: 'Rizal Park/ Our Late Night Walks' },
+            { lat: 14.5897886, lng: 120.9831156, title: 'SM City Manila' },
+            { lat: 14.5942438, lng: 120.9819045, title: 'Arroceros Forest Park' },
+            { lat: 14.5905004, lng: 120.9780808, title: 'Carlos School, Mapúa University Manila' },
+            { lat: 14.5926205, lng: 120.9731515, title: 'Manila Cathedral, Intramuros/ Our Monthsary Date and Late Night walks' },
+            { lat: 14.5938751, lng: 120.9706147, title: 'Fort Santiago, Intramuros/ My Birthdays celebration' },
+            { lat: 14.597106, lng: 120.976567, title: 'China Town Arch' },
+            { lat: 14.6005329, lng: 120.973663, title: 'China Town Park' },
+            { lat: 14.6026121, lng: 120.9703526, title: 'Divisoria Mall' },
+            { lat: 14.603165, lng: 120.973563, title: 'Divisrsoia, Lucky Chinatown Mall' },
+            { lat: 14.5662956, lng: 120.9883233, title: 'Manila Zoo/ Our Valentines Date' },
+            { lat: 14.5531561, lng: 121.0218021, title: 'Greenbelt, Makati/ 6th Monthsary date' },
+            { lat: 14.5579819, lng: 121.0238229, title: 'Makati, Salcedo' },
+            { lat: 14.5101249, lng: 120.9913011, title: 'PITX' },
+            { lat: 14.4261426, lng: 120.9465338, title: 'MCI Hospital, Imus Cavite, Philippines' },
+            { lat: 14.418999, lng: 120.9393152, title: 'Our Lady of Hosptial, Imus Cavite, Philippines' },
+            { lat: 14.4173731, lng: 120.9378027, title: 'Carlos Imus Home' },
+            { lat: 14.5596987, lng: 120.9861464, title: 'ASEAN Garden' },
+            { lat: 14.5688734, lng: 120.9838605, title: 'Rajah Sulayman Park/ Early Dates/ Late Night walks' },
+            { lat: 14.577771, lng: 120.9857069, title: 'Philippine General Manila Hospital' },
+            { lat: 14.5703571, lng: 120.9865207, title: 'Remedios Circle/ Late Night Walks' },
+            { lat: 14.6561126, lng: 121.0669229, title: 'UP Sunken Garden/ UP Fair' },
+            { lat: 14.5541257, lng: 121.0184605, title: 'Washington Sycip Park/ Our First Night walk in Makati and our 6th Monthsary' },
+            { lat: 14.5677821, lng: 120.9933878, title: 'The Sherwood Place/ our go to chill place' },
+            { lat: 14.581334631919237, lng: 120.98600788518138, title: 'Cathedral of Praise - Main Campus/ our ramntic dates/ walking marathon' },
+            { lat: 14.569929291879308, lng: 120.98872532862273, title: 'Puregold - San Andres/ your wet market photoshoot' },
+            { lat: 14.5661865, lng: 120.9893832, title: 'Paraiso ng Batang Maynila/ Our OG Park' },
+            { lat: 14.5344077, lng: 120.9984558, title: 'Baclaran/ where you bought two of your pajamas' },
+            { lat: 14.631620, lng: 121.032830, title: 'Ishis bestfriends/ Louis Graduation party'}
+        ];
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10, // Zoom level
+                center: { lat: 14.5995, lng: 120.9842 }, // Centered on Manila, Philippines
+            });
+
+            locations.forEach(location => {
+                const marker = new google.maps.Marker({
+                    position: { lat: location.lat, lng: location.lng },
+                    map: map,
+                    title: location.title,
+                });
+
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `<h3>${location.title}</h3>`, // Fix: HTML content must be in a string
+                });
+
+                marker.addListener("click", () => {
+                    infoWindow.open(map, marker);
+                });
+            });
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        userLocation = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                        };
+
+                        map.setCenter(userLocation);
+
+                        userMarker = new google.maps.Marker({
+                            position: userLocation,
+                            map: map,
+                            title: "You are here!",
+                        });
+
+                        trackUserLocation();
+                    },
+                    () => {
+                        handleLocationError(true, map.getCenter());
+                    }
+                );
+            } else {
+                handleLocationError(false, map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, pos) {
+            alert(
+                browserHasGeolocation
+                    ? "Error: The Geolocation service failed."
+                    : "Error: Your browser doesn't support geolocation."
+            );
+        }
+
+        function trackUserLocation() {
+            navigator.geolocation.watchPosition(
+                (position) => {
+                    userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+
+                    if (userMarker) {
+                        userMarker.setPosition(userLocation);
+                        map.setCenter(userLocation);
+                    }
+                },
+                (error) => {
+                    console.error("Error watching location: ", error);
+                },
+                { enableHighAccuracy: true, maximumAge: 30000, timeout: 27000 }
+            );
+        }
+
+        function searchLocation() {
+            const address = document.getElementById("location-input").value;
+            const geocoder = new google.maps.Geocoder();
+
+            geocoder.geocode({ address: address }, (results, status) => {
+                if (status === "OK") {
+                    map.setCenter(results[0].geometry.location);
+                    new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location,
+                    });
+                } else {
+                    alert("Location not found: " + status);
+                }
+            });
+        }
+
+        function filterSuggestions() {
+            const input = document.getElementById("location-input").value.toLowerCase();
+            const suggestionsContainer = document.getElementById("suggestions");
+            suggestionsContainer.innerHTML = ""; // Clear previous suggestions
+
+            if (input) {
+                const filteredLocations = locations.filter(location => 
+                    location.title.toLowerCase().includes(input)
+                );
+
+                filteredLocations.forEach(location => {
+                    const suggestionItem = document.createElement("div");
+                    suggestionItem.classList.add("suggestion-item");
+                    suggestionItem.textContent = location.title;
+                    suggestionItem.onclick = () => {
+                        document.getElementById("location-input").value = location.title;
+                        suggestionsContainer.innerHTML = ""; // Clear suggestions
+                        searchLocation();
+                    };
+                    suggestionsContainer.appendChild(suggestionItem);
+                });
+            }
+        }
+
+        let autocomplete;
+
+        function initAutocomplete() {
+            // Initialize autocomplete on the input element
+            const input = document.getElementById("location-input");
+            autocomplete = new google.maps.places.Autocomplete(input);
+
+            // Optional: Restrict to geographical bounds (like country)
+            autocomplete.setComponentRestrictions({
+                country: ["ph"], // Restrict to the Philippines, for example
+            });
+
+            // Listen for when the user selects an address from the suggestions
+            autocomplete.addListener("place_changed", () => {
+                const place = autocomplete.getPlace();
+
+                // If the place has a geometry, move the map to that location
+                if (place.geometry) {
+                    map.setCenter(place.geometry.location);
+
+                    // Add a marker to the selected location
+                    new google.maps.Marker({
+                        position: place.geometry.location,
+                        map: map,
+                    });
+                }
+            });
+        }
+    </script>
+</head>
+
+<header>
+    <ul>
+        <li class="Options"><a href="index.html">Home</a></li>
+        <li class="Options"><a href="Locations.html">Locations</a></li>
+        <li class="Options"><a href="About us.html">About us</a></li>
+        <li class="Options"><a href="Spotify.html">Spotify</a></li>
+    </ul>
+</header>
+
+<body onload="initMap(); initAutocomplete();">
+    <!-- Google Map Container -->
+    <div id="map"></div>
+
+    <!-- Search Container -->
+    <div id="search-container">
+        <input type="text" id="location-input" placeholder="Search location..." oninput="filterSuggestions()">
+        <div id="suggestions"></div> <!-- Suggestions container -->
+        <button onclick="searchLocation()">Search</button>
+    </div>
+
+    
+</body>
+
+
+
+</html>

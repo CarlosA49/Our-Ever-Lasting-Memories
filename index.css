@@ -1,0 +1,276 @@
+/* General reset and box sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    background-image: url('Milestone/Index\ Body\ Background.jpg'); /* Replace with the path to your image */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    color: #000000; /* Spotify green for text */
+    font-family: 'Arial', sans-serif;
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 120px;
+}
+
+/* Navigation bar styling */
+ul {
+    list-style-type: none;
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Keep the nav items aligned in the center vertically */
+    position: fixed;
+    top: 0; /* Stick to the top */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: 100%; /* Full width */
+    background-color:  #ef93c9;
+    padding: 20px;
+    z-index: 10; /* Ensure it stays on top */
+    margin: 0;
+}
+
+/* Adding space below the header */
+.features {
+    margin-top: 100px; /* Adjust this value to increase/decrease space below the header */
+}
+
+/* Other styles remain unchanged */
+li {
+    background-color: #ee89c4;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s, border-radius 0.3s, color 0.1s;
+    cursor: pointer;
+    color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow to list items */
+}
+
+li:hover {
+    background-color: rgb(159, 108, 4); /* Background color on hover */
+    border-radius: 20px;
+    color: white;
+}
+
+ul li a {
+    color: inherit; /* Inherit color from parent (li) */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+ul li a:hover {
+    color: white; /* Change text color to white on hover */
+}
+
+/* Features Section */
+.features {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    text-align: center;
+}
+
+/* Individual figure styling */
+.features figure {
+    flex: 1 1 30%; /* Make each figure flexible, 30% width */
+    margin: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ef93c9; /* Background for figure */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+    padding: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow effect for figure */
+}
+
+.features img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Figure caption styling */
+.features figcaption {
+    padding: 10px 0;
+    font-size: 1.1em;
+    color: white;
+    font-weight: normal; /* Set initial font weight */
+    transition: transform 0.3s ease-in-out, font-weight 0.3s ease-in-out; /* Transition for scaling and weight */
+    font-family: 'Arial', sans-serif; /* Change to desired font */
+    text-decoration: none;
+}
+
+/* Hover Effect for figure */
+.features figure:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Hover Effect for caption */
+.features figure:hover figcaption {
+    transform: scale(1.1); /* Grow slightly on hover */
+    font-weight: bold; /* Make bold on hover */
+}
+
+/* Unbold the second figure caption on hover */
+.features figure:nth-of-type(2):hover figcaption {
+    font-weight: normal; /* Set to normal when hovering over the second figure */
+}
+
+/* Caption link styles */
+.features figcaption a {
+    text-decoration: none;
+    color: white; /* White link color */
+    transition: color 0.3s ease-in-out; /* Smooth transition */
+}
+
+.features figcaption a:hover {
+    text-decoration: underline; /* Underline link on hover */
+}
+
+.features figcaption {
+    text-decoration: none; /* Ensure no underline for normal captions */
+    font-weight: normal; /* Default font weight */
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 768px) {
+    .features figure {
+        flex: 1 1 45%; /* Resize for smaller screens */
+    }
+}
+
+@media (max-width: 500px) {
+    .features {
+        flex-direction: column; /* Stack items vertically on small screens */
+    }
+
+    .features figure {
+        flex: 1 1 100%; /* Full width on small screens */
+    }
+}
+
+/* Search Container */
+.search-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px; /* Space above the search bar */
+}
+
+.search-box {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 300px;
+    margin-bottom: 10px; /* Space between input and button */
+}
+
+.search-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #1DB954; /* Spotify green */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.search-button:hover {
+    background-color: #1ED760; /* Lighter green on hover */
+}
+
+.milestone {
+    display: flex;
+    justify-content: center; /* Center the figures */
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    text-align: center;
+}
+
+/* Individual figure styling */
+.milestone figure {
+    flex: 0 1 200px; /* Set a fixed width for figures */
+    margin: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ef93c9; /* Background for figure */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+    padding: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow effect for figure */
+}
+
+.milestone img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Figure caption styling */
+.milestone figcaption {
+    padding: 10px 0;
+    font-size: 1.1em;
+    color: white;
+    font-weight: normal; /* Set initial font weight */
+    transition: transform 0.3s ease-in-out, font-weight 0.3s ease-in-out; /* Transition for scaling and weight */
+    font-family: 'Arial', sans-serif; /* Change to desired font */
+    text-decoration: none;
+}
+
+/* Hover Effect for figure */
+.milestone figure:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Hover Effect for caption */
+.milestone figure:hover figcaption {
+    transform: scale(1.1); /* Grow slightly on hover */
+    font-weight: bold; /* Make bold on hover */
+}
+
+/* Unbold the second figure caption on hover */
+.milestone figure:nth-of-type(2):hover figcaption {
+    font-weight: normal; /* Set to normal when hovering over the second figure */
+}
+
+/* Caption link styles */
+.milestone figcaption a {
+    text-decoration: none;
+    color: white; /* White link color */
+    transition: color 0.3s ease-in-out; /* Smooth transition */
+}
+
+.milestone figcaption a:hover {
+    text-decoration: underline; /* Underline link on hover */
+}
+
+.milestone figcaption {
+    text-decoration: none; /* Ensure no underline for normal captions */
+    font-weight: normal; /* Default font weight */
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 768px) {
+    .milestone figure {
+        flex: 1 1 40%; /* Resize for smaller screens */
+    }
+}
+
+@media (max-width: 500px) {
+    .milestone {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: center; /* Center the figures vertically */
+    }
+
+    .milestone figure {
+        flex: 1 1 90%; /* Full width on small screens */
+    }
+}

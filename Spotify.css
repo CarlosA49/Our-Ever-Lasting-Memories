@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #323030; /* Spotify dark theme background */
+    color: #1DB954; /* Spotify green for text */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 120px;
+}
+
+.spotify-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+img {
+    width: 200px;
+    height: auto;
+}
+
+/* Add subtle animations */
+img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+ul {
+    display: inline-block;
+    padding: 20px;
+    margin: auto;
+    background-color: rgb(19, 210, 54);
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    position: absolute;
+    top: 0; 
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: 100%; /* Make it span across the width */
+    z-index: 10; /* Ensure it stays on top */
+}
+
+li {
+    background-color: rgb(23, 199, 55);
+    margin-right: 10px; 
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s, border-radius 0.3s, color 0.1s; /* Smooth transition for color */
+    cursor: pointer; /* Change cursor to pointer when hovering */
+    color: rgb(0, 0, 0); /* Default text color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow to list items */
+}
+
+li:hover {
+    background-color: rgb(0, 0, 0); /* Background color on hover */
+    border-radius: 20px; /* Change border radius on hover */
+    color: white; /* Change text color on hover */
+}
+
+ul li a {
+    color: inherit; /* Inherit color from parent (li) */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+/* Hover Effect */
+ul li a:hover {
+    color: white; /* Change text color to white on hover */
+}
+
+.Spotify {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px); /* Adjust height to account for top items */
+    text-align: center;
+    background-color: #191414; /* Dark Spotify background */
+    color: white; /* White text for better contrast */
+    animation: fadeIn 1s ease-in-out; /* Fade-in effect for entire section */
+    margin-top: 120px; /* Create space from top of the browser */
+    padding: 20px; /* Add padding for spacing around the content */
+    border-radius: 15px; /* Optional: rounded corners for the section */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Optional: shadow for depth */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.Spotify img {
+    max-width: 200px; /* Set a size for the album image */
+    margin-bottom: 20px;
+    border-radius: 15px; /* Rounded corners for the album cover */
+    animation: pulse 2s infinite; /* Add a pulsing effect to the image */
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.Spotify figcaption {
+    display: flex; /* Use flex to align items */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+}
+
+.Spotify figcaption a {
+    text-decoration: none;
+    color: #1DB954; /* Spotify green */
+    font-size: 1.5em;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    margin-left: 10px; /* Space between music icon and text */
+}
+
+.Spotify figcaption a:hover {
+    color: #1ED760; /* Lighter green on hover */
+    transform: scale(1.1) rotate(-3deg); /* Slight rotation and scale */
+}
+
+.music-icon {
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+.Spotify figcaption a:hover + .music-icon {
+    opacity: 1; /* Show music icon on hover */
+    transform: translateX(-5px); /* Slightly move to the left */
+}
+
+.song-details {
+    text-align: center;
+    margin-top: 20px;
+    animation: slideUp 1s ease-in-out; /* Slide in the text */
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.song-details h2, .song-details h3 {
+    margin: 10px 0;
+}
+
+.playbar {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centering playbar items */
+    gap: 10px;
+    width: 100%; /* Full width for better centering */
+    max-width: 600px; /* Optional: max width for playbar */
+    margin-top: 20px;
+    animation: fadeInUp 1.5s ease-in-out; /* Playbar fades in */
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.progress-bar {
+    position: relative;
+    width: 100%; /* Full width */
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    width: 30%; /* This would represent 30% of the song's progress */
+    background-color: #1DB954;
+    border-radius: 5px;
+    animation: progressMove 4s infinite; /* Progress bar moves in a loop */
+}
+
+@keyframes progressMove {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+.playbar span {
+    font-size: 0.9em;
+    color: #ccc; /* Light gray for time text */
+    text-align: center; /* Center the text */
+    width: 50px; /* Optional: fixed width for time display */
+}

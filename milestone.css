@@ -1,0 +1,157 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    background-color: #fde4e4; /* Soft pink background */
+    font-family: 'Dancing Script', 'cursive'; /* Handwriting font for a romantic feel */
+    color: #4b2e2e; /* Dark chocolate brown for text */
+    margin: 0;
+    padding: 0;
+    padding-bottom: 120px;
+    background-image: url('parchment.jpg'); /* Optional: use a parchment texture for a vintage feel */
+    background-size: cover;
+}
+
+/* Navigation bar styling */
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background-color: rgba(255, 192, 203, 0.6); /* Soft pink with transparency */
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+li {
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s, border-radius 0.3s, color 0.1s;
+    cursor: pointer;
+    background-color: rgba(255, 192, 203, 0.6); /* Pale pink for nav items */
+    color: #4b2e2e; /* Chocolate brown text */
+    font-size: 1.2em;
+}
+
+li:hover {
+    background-color: #ffb6c1; /* Lighter pink on hover */
+    color: white;
+    border-radius: 20px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease-in-out;
+}
+
+ul li a:hover {
+    color: white;
+}
+
+/* Love letter section */
+.milestone-message {
+    text-align: center; /* Center the text */
+    line-height: 1.6; /* Spacing between lines */
+    font-size: 1.1em; /* Slightly larger text for readability */
+    color: #333; /* Darker text color for contrast */
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px; /* Maximum width of the letter */
+    background-color: #fce4ec; /* Light pink background for letter effect */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+}
+
+/* Optional: Add a bit of flair with a cursive font for a few specific lines */
+.milestone-message p:first-of-type,
+.milestone-message p:last-of-type {
+    font-family: 'Cursive', sans-serif; /* Change to cursive for a sweet touch */
+    font-weight: bold; /* Make the first and last lines stand out */
+}
+
+/* Heart separators between paragraphs */
+.milestone-message p:after {
+    content: " ♥ ";
+    color: #ff6f61; /* Soft coral heart icon */
+    font-size: 1.5em;
+    padding-left: 10px;
+}
+
+/* Features Section (for images in rows of 3) */
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Individual figure styling */
+.features figure {
+    flex: 1 1 calc(33.33% - 40px); /* Make each figure 1/3rd of the row with spacing accounted for */
+    margin: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ef93c9;
+    transition: transform 0.3s ease-in-out;
+    padding: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.features img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow for a gentler effect */
+    border: 5px solid #ffb6c1; /* Soft pink border */
+    transition: transform 0.3s ease-in-out;
+}
+
+.features figure:hover img {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Captions under the images */
+.features figcaption {
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: #4b2e2e; /* Chocolate brown text */
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 768px) {
+    .features figure {
+        flex: 1 1 45%; /* 2 images per row on smaller screens */
+    }
+
+    ul li {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 500px) {
+    .features {
+        flex-direction: column; /* Stack images vertically on very small screens */
+    }
+
+    .features figure {
+        flex: 1 1 100%; /* Full width images on very small screens */
+    }
+}
+
+.title {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
