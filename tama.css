@@ -1,0 +1,323 @@
+/* ==========================================================================
+   Tamagotchi — egg-shaped device with pixel-art LCD
+   ========================================================================== */
+
+.tama-device {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: var(--sp-6);
+    align-items: start;
+    padding: var(--sp-5) 0;
+}
+@media (max-width: 880px) {
+    .tama-device { grid-template-columns: 1fr; }
+}
+
+/* The egg */
+.tama-shell {
+    position: relative;
+    width: min(420px, 92vw);
+    margin: 0 auto;
+    padding: 60px 40px 50px;
+    aspect-ratio: 4 / 5;
+    background:
+        radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.55), transparent 45%),
+        radial-gradient(ellipse at 70% 80%, rgba(180, 60, 110, 0.35), transparent 50%),
+        linear-gradient(135deg, var(--pink-300) 0%, var(--pink-500) 50%, var(--pink-700) 100%);
+    border-radius: 50% 50% 46% 46% / 60% 60% 40% 40%;
+    box-shadow:
+        inset 0 -30px 50px rgba(180, 60, 110, 0.35),
+        inset 0 24px 60px rgba(255, 255, 255, 0.4),
+        0 30px 60px rgba(180, 60, 110, 0.5);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tama-antenna {
+    position: absolute;
+    top: -22px; left: 50%;
+    transform: translateX(-50%);
+    width: 4px; height: 28px;
+    background: linear-gradient(180deg, #fff, var(--pink-200));
+    border-radius: 4px;
+}
+.tama-antenna span {
+    position: absolute;
+    top: -8px; left: 50%;
+    transform: translateX(-50%);
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+    animation: blink 1.4s var(--ease-out) infinite;
+}
+@keyframes blink {
+    0%, 70%, 100% { opacity: 1; }
+    80%, 90%      { opacity: 0.3; }
+}
+
+/* Screen frame */
+.tama-screen-frame {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 24px;
+    background: linear-gradient(180deg, #2a1820, #1a0e14);
+    padding: 16px;
+    box-shadow:
+        inset 0 6px 18px rgba(0, 0, 0, 0.65),
+        0 4px 0 rgba(255, 255, 255, 0.15);
+}
+.tama-screen {
+    width: 100%; height: 100%;
+    border-radius: 12px;
+    background:
+        linear-gradient(180deg, #d2e8c1, #b3d99b);
+    color: #1c2a14;
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    line-height: 1.4;
+    padding: 8px 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.15);
+    image-rendering: pixelated;
+}
+.tama-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0 1px, transparent 1px 3px);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+
+/* Day / night */
+.tama-screen.is-night {
+    background: linear-gradient(180deg, #1f2a4a, #0d1228);
+    color: #cbd6ff;
+}
+.tama-screen.is-night::before { background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 3px); }
+
+/* Views */
+.tama-view, .tama-mini, .tama-status-modal, .tama-menu {
+    position: absolute; inset: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+}
+.tama-view[hidden], .tama-mini[hidden], .tama-status-modal[hidden], .tama-menu[hidden] { display: none !important; }
+
+.tama-line { font-size: 10px; }
+.tama-sub { font-size: 8px; opacity: 0.85; }
+
+#tama-name {
+    width: 160px;
+    padding: 6px 10px;
+    border: 2px solid currentColor;
+    background: transparent;
+    color: inherit;
+    border-radius: 8px;
+    text-align: center;
+    font-family: var(--font-pixel);
+    font-size: 10px;
+}
+
+/* Status row at top */
+.tama-status {
+    position: absolute;
+    top: 6px; left: 10px; right: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8px;
+    opacity: 0.75;
+}
+
+/* Pet area */
+.tama-view--main { justify-content: flex-start; padding-top: 22px; }
+.tama-pet-area {
+    flex: 1;
+    width: 100%;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+/* Bars row */
+.tama-bars {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+    width: 100%;
+    padding: 6px 4px 4px;
+}
+.tbar { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 9px; }
+.tbar-track { width: 100%; height: 4px; background: rgba(0, 0, 0, 0.18); border-radius: 2px; overflow: hidden; }
+.tbar-fill { height: 100%; width: 80%; background: #2a4a18; border-radius: 2px; transition: width 280ms var(--ease-out); }
+.tama-screen.is-night .tbar-fill { background: #b3c9ff; }
+.tbar-fill.warn   { background: #c0822c; }
+.tbar-fill.danger { background: #b03333; }
+
+/* Menu */
+.tama-menu {
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.55);
+    padding: 8px;
+    border-radius: 8px;
+}
+.tama-mi {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    border: 2px solid #1c2a14;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform var(--dur-fast) var(--ease-bounce), background var(--dur-fast);
+}
+.tama-mi:hover { transform: scale(1.1) rotate(-4deg); background: #fff; }
+.tama-mi.is-focused { outline: 3px dashed #1c2a14; outline-offset: 2px; }
+
+/* Mini-game */
+.mini-card {
+    width: 70px; height: 90px;
+    border-radius: 8px;
+    background: #fff;
+    border: 3px solid #1c2a14;
+    color: #1c2a14;
+    font-family: var(--font-pixel);
+    font-size: 28px;
+    display: grid; place-items: center;
+    box-shadow: 4px 4px 0 #1c2a14;
+}
+.mini-row { display: flex; gap: 8px; }
+.mini-row .btn { padding: 6px 10px; font-size: 10px; font-family: var(--font-pixel); }
+.mini-score { font-size: 9px; opacity: 0.8; }
+
+/* Status modal */
+.tama-status-modal { background: rgba(255, 255, 255, 0.7); border-radius: 8px; padding: 10px; gap: 4px; align-items: stretch; }
+.tama-status-modal h3 { margin: 0 0 4px; text-align: center; font-family: var(--font-pixel); font-size: 11px; color: #1c2a14; }
+.tama-status-modal ul { list-style: none; padding: 0; margin: 0 0 6px; font-size: 9px; max-height: 100%; overflow-y: auto; }
+.tama-status-modal li { display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.2); }
+.tama-status-modal .btn { font-size: 10px; padding: 4px 10px; align-self: center; }
+
+/* Buttons (3) */
+.tama-buttons {
+    margin-top: 26px;
+    display: flex;
+    gap: 22px;
+    align-items: center;
+}
+.tama-btn {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    border: none;
+    background:
+        radial-gradient(circle at 30% 30%, #fff, rgba(255, 255, 255, 0.05) 50%),
+        linear-gradient(135deg, #fff5fa, var(--pink-200));
+    color: var(--plum);
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    box-shadow: 0 6px 0 rgba(180, 60, 110, 0.45), inset 0 -3px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform var(--dur-fast), box-shadow var(--dur-fast);
+}
+.tama-btn:hover { transform: translateY(-2px); }
+.tama-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(180, 60, 110, 0.45); }
+.tama-btn--center { background: linear-gradient(135deg, var(--pink-400), var(--pink-600)); color: #fff; }
+
+.tama-brand {
+    margin-top: 14px;
+    font-family: var(--font-display);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+/* Sprites — pixel-art via box-shadow chains. We render via JS. */
+.tama-pixel {
+    width: 64px;
+    height: 64px;
+    position: relative;
+    image-rendering: pixelated;
+}
+.tama-pixel .px {
+    position: absolute;
+    width: 4px; height: 4px;
+}
+
+.tama-poo {
+    position: absolute;
+    bottom: 2px; left: 12px;
+    font-size: 16px;
+    animation: bob 1.2s ease-in-out infinite;
+}
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+.tama-zzz {
+    position: absolute;
+    top: -8px; right: 14px;
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    animation: zfade 1.6s ease-in-out infinite;
+}
+@keyframes zfade { 0%, 100% { opacity: 0.4; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-4px); } }
+.tama-icon-bubble {
+    position: absolute;
+    top: 4px; left: 50%;
+    transform: translateX(-50%);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    display: grid; place-items: center;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    animation: pop 700ms var(--ease-bounce);
+}
+@keyframes pop {
+    0%   { transform: translate(-50%, 8px) scale(0.4); opacity: 0; }
+    60%  { transform: translate(-50%, -2px) scale(1.1); opacity: 1; }
+    100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
+}
+
+/* Sick animation */
+.tama-pixel.is-sick { animation: shake 0.5s linear infinite; }
+@keyframes shake { 25% { transform: translateX(-2px); } 75% { transform: translateX(2px); } }
+
+/* Eating bounce */
+.tama-pixel.is-eating { animation: chomp 0.4s var(--ease-bounce); }
+@keyframes chomp { 50% { transform: scale(1.1, 0.9); } }
+
+/* Instructions panel */
+.tama-instructions {
+    background: var(--surface-strong);
+    border-radius: var(--r-lg);
+    border: 1px solid var(--border-soft);
+    padding: var(--sp-5);
+    box-shadow: var(--shadow-sm);
+    align-self: stretch;
+}
+.tama-instructions h3 {
+    font-family: var(--font-display);
+    color: var(--plum);
+    font-size: 1.6rem;
+    margin-bottom: var(--sp-3);
+}
+.tama-instructions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.tama-instructions li {
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(180, 60, 110, 0.18);
+    font-size: var(--fs-sm);
+    color: var(--fg);
+}
+.tama-instructions li:last-child { border-bottom: none; }
+.tama-instructions b { color: var(--pink-700); margin-right: 6px; }
+
+/* Toast (shared with polly) */

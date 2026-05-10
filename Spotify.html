@@ -1,40 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>our ever lasting memories</title>
-<link rel="Stylesheet" href="Spotify.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Playlist — Our Ever Lasting Memories</title>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="Spotify.css">
 </head>
+<body class="has-fixed-nav spotify-page">
+    <div id="site-nav"></div>
 
-<body>
-    <header>
-        <ul>
-            <li class="Options"><a href="index.html">Home</a></li>
-            <li class="Options"><a href="Locations.html">Locations</a></li>
-            <li class="Options"><a href="About us.html">About us</a></li>
-            <li class="Options"><a href="Spotify.html">Spotify</a></li>
-        </ul>
-        <nav>
-            <div> </div>
-            <div> </div>
-            <div> </div>
-            <div> </div>
-        </nav>
-    </header>
+    <main class="spotify-main">
+        <header class="spotify-hero reveal">
+            <h1>The Soundtrack of Us</h1>
+            <p class="muted">Every song that lived inside one of our memories.</p>
+        </header>
 
-    <section class="Spotify">
-        <figure>
-            <img src="Spotify.png" alt="Spotify">
-            <figcaption><a href="https://open.spotify.com/playlist/2rpT51yL74J57b8dvbnWy7" target="_blank" rel="noopener noreferrer">Our Spotify</a></figcaption>
-        </figure>
-
-        <div class="song-details">
-            <h2>Song Title:  Our Loving Memories</h2>
-            <h3>Artist: The Pookie Couples</h3>
-            <div class="playbar">
-                <span>1:12</span>
-                <div class="progress-bar">
-                    <div class="progress"></div>
-                </div>
-                <span>3:45</span>
+        <section class="Spotify reveal" data-delay="1">
+            <div class="vinyl">
+                <img src="Spotify.png" alt="Our Spotify playlist art">
+                <div class="vinyl-disc" aria-hidden="true"></div>
             </div>
-        </div>
-      </section>
+
+            <div class="now-playing">
+                <p class="np-label">NOW PLAYING</p>
+                <h2>Our Loving Memories</h2>
+                <h3>The Pookie Couples</h3>
+
+                <div class="playbar">
+                    <span class="time">1:12</span>
+                    <div class="progress-bar"><div class="progress"></div></div>
+                    <span class="time">3:45</span>
+                </div>
+
+                <div class="controls">
+                    <button class="ctrl" aria-label="Shuffle">⤭</button>
+                    <button class="ctrl" aria-label="Previous">⏮</button>
+                    <button class="ctrl ctrl--play" aria-label="Play">▶</button>
+                    <button class="ctrl" aria-label="Next">⏭</button>
+                    <button class="ctrl" aria-label="Loop">⟲</button>
+                </div>
+
+                <a class="btn btn--gold open-spotify" href="https://open.spotify.com/playlist/2rpT51yL74J57b8dvbnWy7" target="_blank" rel="noopener noreferrer">
+                    Open Our Playlist on Spotify ↗
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="site.js" defer></script>
 </body>
+</html>

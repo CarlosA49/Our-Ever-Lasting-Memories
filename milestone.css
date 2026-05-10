@@ -1,157 +1,124 @@
-/* General reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Milestone — page styles. theme.css supplies the navbar + tokens. */
+
+.milestones-page {
+    background:
+        linear-gradient(180deg, rgba(255, 245, 250, 0.85), rgba(255, 220, 235, 0.7)),
+        url('Background Heart 1.jpg') center/cover no-repeat fixed;
+    color: var(--fg);
 }
 
-/* Body styling */
-body {
-    background-color: #fde4e4; /* Soft pink background */
-    font-family: 'Dancing Script', 'cursive'; /* Handwriting font for a romantic feel */
-    color: #4b2e2e; /* Dark chocolate brown for text */
-    margin: 0;
-    padding: 0;
-    padding-bottom: 120px;
-    background-image: url('parchment.jpg'); /* Optional: use a parchment texture for a vintage feel */
-    background-size: cover;
+.milestone-main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: var(--sp-6) var(--sp-5) var(--sp-8);
 }
 
-/* Navigation bar styling */
-ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px;
-    background-color: rgba(255, 192, 203, 0.6); /* Soft pink with transparency */
-    border-radius: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-li {
-    padding: 10px 20px;
-    border-radius: 10px;
-    transition: background-color 0.3s, border-radius 0.3s, color 0.1s;
-    cursor: pointer;
-    background-color: rgba(255, 192, 203, 0.6); /* Pale pink for nav items */
-    color: #4b2e2e; /* Chocolate brown text */
-    font-size: 1.2em;
-}
-
-li:hover {
-    background-color: #ffb6c1; /* Lighter pink on hover */
-    color: white;
-    border-radius: 20px;
-}
-
-ul li a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.3s ease-in-out;
-}
-
-ul li a:hover {
-    color: white;
-}
-
-/* Love letter section */
-.milestone-message {
-    text-align: center; /* Center the text */
-    line-height: 1.6; /* Spacing between lines */
-    font-size: 1.1em; /* Slightly larger text for readability */
-    color: #333; /* Darker text color for contrast */
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 600px; /* Maximum width of the letter */
-    background-color: #fce4ec; /* Light pink background for letter effect */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
-}
-
-/* Optional: Add a bit of flair with a cursive font for a few specific lines */
-.milestone-message p:first-of-type,
-.milestone-message p:last-of-type {
-    font-family: 'Cursive', sans-serif; /* Change to cursive for a sweet touch */
-    font-weight: bold; /* Make the first and last lines stand out */
-}
-
-/* Heart separators between paragraphs */
-.milestone-message p:after {
-    content: " ♥ ";
-    color: #ff6f61; /* Soft coral heart icon */
-    font-size: 1.5em;
-    padding-left: 10px;
-}
-
-/* Features Section (for images in rows of 3) */
-.features {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 20px;
+.milestones-hero {
     text-align: center;
+    padding: var(--sp-5) 0 var(--sp-4);
 }
+.hero-eyebrow {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: var(--r-pill);
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--pink-700);
+    letter-spacing: 0.6px;
+    font-size: var(--fs-sm);
+    margin-bottom: var(--sp-3);
+    border: 1px solid var(--border-soft);
+}
+.milestones-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 7vw, 4.5rem);
+    color: var(--plum);
+    margin-bottom: var(--sp-2);
+    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.55);
+}
+.milestones-hero p { color: var(--fg-muted); font-size: var(--fs-lg); }
 
-/* Individual figure styling */
-.features figure {
-    flex: 1 1 calc(33.33% - 40px); /* Make each figure 1/3rd of the row with spacing accounted for */
-    margin: 10px;
-    border-radius: 10px;
+.milestone-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-5);
+    padding: var(--sp-5) 0;
+}
+.milestone-grid figure {
+    margin: 0;
+    background: var(--surface-strong);
+    border-radius: var(--r-lg);
     overflow: hidden;
-    background-color: #ef93c9;
-    transition: transform 0.3s ease-in-out;
-    padding: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--dur-mid) var(--ease-out), box-shadow var(--dur-mid);
 }
-
-.features img {
+.milestone-grid figure:hover {
+    transform: translateY(-6px) rotate(-0.4deg);
+    box-shadow: var(--shadow-lg);
+}
+.milestone-grid img {
     width: 100%;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow for a gentler effect */
-    border: 5px solid #ffb6c1; /* Soft pink border */
-    transition: transform 0.3s ease-in-out;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform var(--dur-slow) var(--ease-out);
+}
+.milestone-grid figure:hover img { transform: scale(1.04); }
+.milestone-grid figcaption {
+    padding: var(--sp-4);
+    color: var(--fg);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), #fff);
+    font-size: var(--fs-md);
+    line-height: 1.55;
+    flex: 1;
 }
 
-.features figure:hover img {
-    transform: scale(1.05); /* Slight zoom on hover */
+@media (max-width: 880px) { .milestone-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px) { .milestone-grid { grid-template-columns: 1fr; } }
+
+/* Long love letter */
+.milestone-message {
+    margin: var(--sp-7) auto 0;
+    max-width: 760px;
+    padding: var(--sp-7) clamp(20px, 5vw, 60px);
+    background: linear-gradient(160deg, #fff, var(--pink-50));
+    border-radius: var(--r-xl);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-md);
+    position: relative;
 }
-
-/* Captions under the images */
-.features figcaption {
-    margin-top: 10px;
-    font-size: 1.1em;
-    color: #4b2e2e; /* Chocolate brown text */
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-    border-radius: 10px;
+.milestone-message::before {
+    content: '“';
+    position: absolute;
+    top: -28px; left: 24px;
+    font-family: var(--font-display);
+    font-size: 8rem;
+    color: var(--pink-300);
+    line-height: 1;
+    pointer-events: none;
 }
-
-/* Media Queries for Smaller Screens */
-@media (max-width: 768px) {
-    .features figure {
-        flex: 1 1 45%; /* 2 images per row on smaller screens */
-    }
-
-    ul li {
-        font-size: 1em;
-    }
-}
-
-@media (max-width: 500px) {
-    .features {
-        flex-direction: column; /* Stack images vertically on very small screens */
-    }
-
-    .features figure {
-        flex: 1 1 100%; /* Full width images on very small screens */
-    }
-}
-
-.title {
+.milestone-message h2 {
     text-align: center;
-    padding-top: 40px;
-    padding-bottom: 20px;
+    color: var(--pink-700);
+    font-size: 2.4rem;
+    margin-bottom: var(--sp-5);
+}
+.milestone-message p {
+    line-height: 1.85;
+    margin-bottom: var(--sp-4);
+    color: var(--fg);
+}
+.milestone-message p:last-child { margin-bottom: 0; }
+.milestone-message .signoff {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--plum);
+    text-align: center;
+    margin-top: var(--sp-5);
+}
+.milestone-message .signoff-name {
+    text-align: center;
+    color: var(--fg-muted);
+    font-style: italic;
 }

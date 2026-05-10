@@ -1,65 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>our ever lasting memories</title>
-<link rel="Stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Ever Lasting Memories</title>
+    <meta name="description" content="Carlos &amp; Ishi — a memory book of our love story.">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="index.css">
 </head>
+<body class="has-fixed-nav">
+    <div id="site-nav"></div>
 
-<body>
-    <header>
-        <ul>
-            <li class="Options"><a href="index.html">Home</a></li>
-            <li class="Options"><a href="Locations.html">Locations</a></li>
-            <li class="Options"><a href="About us.html">About us</a></li>
-            <li class="Options"><a href="Spotify.html">Spotify</a></li>
-        </ul>
-        <nav>
-            <div> </div>
-            <div> </div>
-            <div> </div>
-            <div> </div>
-        </nav>
-    </header>
+    <main class="home">
+        <section class="hero">
+            <div class="hero__inner">
+                <p class="hero__eyebrow reveal">02 . 26 . 2024 — and forever after</p>
+                <h1 class="hero__title reveal" data-delay="1">
+                    Our Ever Lasting <span class="hero__heart" aria-hidden="true">♥</span> Memories
+                </h1>
+                <p class="hero__sub reveal" data-delay="2">
+                    A little corner of the internet for Carlos &amp; Ishi —
+                    every late-night walk, every quesabirria, every monthsary.
+                </p>
+                <div class="hero__cta reveal" data-delay="3">
+                    <a class="btn" href="milestone.html">Open the memory book</a>
+                    <a class="btn btn--ghost" href="games.html">Play our games</a>
+                </div>
+            </div>
+            <div class="hero__art" aria-hidden="true">
+                <div class="petal p1"></div>
+                <div class="petal p2"></div>
+                <div class="petal p3"></div>
+                <div class="petal p4"></div>
+                <div class="hero__locket">
+                    <div class="locket-face">
+                        <span>C</span><span class="amp">&amp;</span><span>I</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section class="features">
-        <figure>
-            <img src="About us.jpg" alt="About us">
-            <figcaption><a href="About us.html">About us</a></figcaption>
-          </figure>
-          <figure>
-            <figcaption>
-                <p>Hello pookie at this moment this our 7th</p>
-                <p>this our 7th monthsary and</p>
-                <p>I just want to say how grateful I am</p>
-                <p>to have you we started dating from</p>
-                <p>02/ 26/ 2024 after that you’ve brought</p>
-                <p>me so much happiness and this website</p>
-                <p>will symbolize our milestone, our thoughts,</p>
-                <p>our care for one another and oureveryday growing love</p>
-                <p>I will Always Love you My love always</p>
+        <section class="features">
+            <figure class="reveal" data-delay="1">
+                <a href="About us.html">
+                    <img src="About us.jpg" alt="A heart-shaped piece of bread, our about us page">
+                    <figcaption><span>About Us</span><small>Our story, our values, our pookie talk</small></figcaption>
+                </a>
+            </figure>
+            <figure class="reveal hero-note" data-delay="2">
+                <figcaption class="love-note">
+                    <p class="love-note__title script">Hello pookie</p>
+                    <p>This our 7th monthsary and I just want to say how grateful I am to have you.</p>
+                    <p>We started dating from <strong>02/26/2024</strong>, and ever since you've brought me so much happiness.</p>
+                    <p>This website will symbolize our milestones, our thoughts, our care for one another and our every day growing love.</p>
+                    <p class="love-note__sign script">I will always love you, my love. — Carlos</p>
+                </figcaption>
+            </figure>
+            <figure class="reveal" data-delay="3">
+                <a href="Locations.html">
+                    <img src="Location.jpg" alt="A map pin marking our memory locations">
+                    <figcaption><span>Locations</span><small>Every place we made a memory</small></figcaption>
+                </a>
+            </figure>
+        </section>
 
-            </figcaption>
-          </figure>
-          <figure>
-            <img src="Location.jpg" alt="Locations">
-            <figcaption><a href="Locations.html">Locations</a></figcaption>
-          </figure>
-      </section>
+        <section class="search-section reveal">
+            <h2 class="script">Search the memory book</h2>
+            <p class="muted">Try <em>milestone</em>, <em>games</em>, <em>polly</em>, <em>tamagotchi</em>, <em>about us</em>, <em>spotify</em>.</p>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-box" placeholder="What memory are you looking for, pookie?" autocomplete="off">
+                <button class="search-button btn" type="button" onclick="search()">Search</button>
+            </div>
+            <div id="searchResults" role="status" aria-live="polite"></div>
+        </section>
 
-      <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" placeholder="Search for meaning, pookie" />
-        <button class="search-button" onclick="search()">Search</button>
-    </div>
-    
-    <div id="searchResults"></div>
-    
+        <section class="features features--alt">
+            <figure class="reveal" data-delay="1">
+                <a href="milestone.html">
+                    <img src="Milestone/Milestone figimage.jpg" alt="Photo of Carlos &amp; Ishi">
+                    <figcaption><span>Milestones</span><small>18 memories and counting</small></figcaption>
+                </a>
+            </figure>
+            <figure class="reveal" data-delay="2">
+                <a href="games.html">
+                    <img src="Teddy Bear.jpg" alt="A cute teddy bear">
+                    <figcaption><span>Our Game Corner</span><small>Polly Pocket &amp; Tamagotchi</small></figcaption>
+                </a>
+            </figure>
+            <figure class="reveal" data-delay="3">
+                <a href="Spotify.html">
+                    <img src="Spotify.png" alt="Our Spotify playlist">
+                    <figcaption><span>Our Playlist</span><small>The soundtrack of us</small></figcaption>
+                </a>
+            </figure>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+
     <script src="search.js"></script>
-    
-    <section class="Milestone">
-        <figure>
-            <img src="Milestone/Milestone figimage.jpg" alt="Milestone">
-            <figcaption><a href="milestone.html">Milestone</a></figcaption>
-          </figure>
-    </section>
-    
-    
+    <script src="site.js" defer></script>
 </body>
 </html>
