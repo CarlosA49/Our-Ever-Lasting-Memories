@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Game Corner — Our Ever Lasting Memories</title>
+    <meta name="description" content="A miniature Polly Pocket dollhouse and a virtual Tamagotchi pet for Carlos &amp; Ishi.">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="games.css">
+    <link rel="stylesheet" href="polly.css">
+    <link rel="stylesheet" href="tama.css">
+</head>
+<body class="has-fixed-nav games-page" data-hearts="off">
+    <div id="site-nav"></div>
+
+    <main class="games-main">
+        <header class="games-hero reveal">
+            <p class="hero-eyebrow">Just for you, pookie</p>
+            <h1>Our Game Corner</h1>
+            <p class="muted">
+                Two tiny games to play whenever you miss me. Pick the heart for a Polly-Pocket dollhouse,
+                or the egg for our very own Tamagotchi pet.
+            </p>
+        </header>
+
+        <nav class="game-tabs reveal" data-delay="1" role="tablist" aria-label="Choose a game">
+            <button id="tab-polly" class="game-tab is-active" role="tab" aria-selected="true" aria-controls="game-polly" data-target="game-polly">
+                <span class="game-tab__icon" aria-hidden="true">💖</span>
+                <span>
+                    <span class="game-tab__title">Polly Pocket</span>
+                    <span class="game-tab__sub">Heart compact dollhouse</span>
+                </span>
+            </button>
+            <button id="tab-tama" class="game-tab" role="tab" aria-selected="false" aria-controls="game-tama" data-target="game-tama">
+                <span class="game-tab__icon" aria-hidden="true">🥚</span>
+                <span>
+                    <span class="game-tab__title">Tamagotchi</span>
+                    <span class="game-tab__sub">Hatch &amp; raise our pet</span>
+                </span>
+            </button>
+        </nav>
+
+        <!-- ============================== POLLY POCKET ====================== -->
+        <section id="game-polly" class="game-panel is-active" role="tabpanel" aria-labelledby="tab-polly">
+            <div id="polly-root" class="polly compact closed" data-room="bedroom">
+                <!-- Closed compact -->
+                <div class="compact-closed" aria-hidden="false">
+                    <div class="compact-shell">
+                        <div class="compact-clasp">♥</div>
+                        <div class="compact-name">Polly &amp; Friends</div>
+                        <div class="compact-sparkle s1">✦</div>
+                        <div class="compact-sparkle s2">✧</div>
+                        <div class="compact-sparkle s3">✦</div>
+                    </div>
+                    <button class="compact-open-btn btn">Open Compact ✦</button>
+                </div>
+
+                <!-- Opened interior -->
+                <div class="compact-open" aria-hidden="true">
+                    <div class="compact-lid">
+                        <div class="lid-mirror">
+                            <div class="lid-shine"></div>
+                            <div class="lid-monogram">C &amp; I</div>
+                        </div>
+                    </div>
+
+                    <div class="compact-base">
+                        <div class="base-toolbar">
+                            <div class="room-tabs" role="tablist" aria-label="Rooms">
+                                <button class="room-tab is-active" data-room="bedroom"  type="button">🛏️ Bedroom</button>
+                                <button class="room-tab"          data-room="kitchen"  type="button">🍳 Kitchen</button>
+                                <button class="room-tab"          data-room="living"   type="button">🛋️ Living</button>
+                                <button class="room-tab"          data-room="garden"   type="button">🌷 Garden</button>
+                                <button class="room-tab"          data-room="dressup"  type="button">👗 Dress-Up</button>
+                            </div>
+                            <div class="toolbar-actions">
+                                <button class="tool-btn" data-action="theme"   type="button" title="Change wallpaper">🎨</button>
+                                <button class="tool-btn" data-action="snapshot" type="button" title="Save snapshot">📸</button>
+                                <button class="tool-btn" data-action="reset"   type="button" title="Reset this room">♻︎</button>
+                                <button class="tool-btn" data-action="close"   type="button" title="Close compact">✕</button>
+                            </div>
+                        </div>
+
+                        <div class="stage-wrap">
+                            <div class="stage" id="polly-stage" aria-label="Dollhouse stage">
+                                <div class="floor"></div>
+                                <div class="dolls"></div>
+                                <div class="placed"></div>
+                                <div class="trash" id="polly-trash" title="Drag here to remove">🗑️</div>
+                            </div>
+                            <div class="dressup-room" id="polly-dressup" hidden>
+                                <div class="dressup-figure" data-doll="ishi">
+                                    <div class="figure-name">Ishi</div>
+                                    <div class="figure-stack" data-stack="ishi"></div>
+                                </div>
+                                <div class="dressup-figure" data-doll="carlos">
+                                    <div class="figure-name">Carlos</div>
+                                    <div class="figure-stack" data-stack="carlos"></div>
+                                </div>
+                                <div class="dressup-controls">
+                                    <div class="dressup-doll-pick">
+                                        <button class="doll-pick is-active" data-doll="ishi" type="button">Ishi</button>
+                                        <button class="doll-pick" data-doll="carlos" type="button">Carlos</button>
+                                    </div>
+                                    <div class="dressup-slots" id="polly-dressup-slots"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tray">
+                            <div class="tray-tabs">
+                                <button class="tray-tab is-active" data-tray="dolls"     type="button">🧍 Dolls</button>
+                                <button class="tray-tab"           data-tray="furniture" type="button">🛋 Furniture</button>
+                                <button class="tray-tab"           data-tray="food"      type="button">🍰 Food</button>
+                                <button class="tray-tab"           data-tray="plants"    type="button">🌷 Plants</button>
+                                <button class="tray-tab"           data-tray="pets"      type="button">🐶 Pets</button>
+                                <button class="tray-tab"           data-tray="hearts"    type="button">💖 Hearts</button>
+                            </div>
+                            <div class="tray-grid" id="polly-tray"></div>
+                            <p class="tray-hint">Tap an item to drop it in. Drag placed items around. Drag onto 🗑️ to remove.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================= TAMAGOTCHI ========================= -->
+        <section id="game-tama" class="game-panel" role="tabpanel" aria-labelledby="tab-tama" hidden>
+            <div id="tama-root" class="tama-device">
+                <div class="tama-shell">
+                    <div class="tama-antenna"><span></span></div>
+                    <div class="tama-screen-frame">
+                        <div class="tama-screen" id="tama-screen">
+
+                            <!-- Hatching screen -->
+                            <div class="tama-view tama-view--hatch" data-view="hatch">
+                                <div class="tama-pixel egg-stage"></div>
+                                <p class="tama-line">A new egg appeared!</p>
+                                <input type="text" id="tama-name" maxlength="10" placeholder="Name our pet" />
+                                <button class="btn" id="tama-hatch">Hatch ♥</button>
+                            </div>
+
+                            <!-- Main view -->
+                            <div class="tama-view tama-view--main" data-view="main" hidden>
+                                <div class="tama-status">
+                                    <span class="tama-name" id="tama-pet-name">—</span>
+                                    <span class="tama-age"  id="tama-pet-age">0d 0h</span>
+                                </div>
+                                <div class="tama-pet-area">
+                                    <div class="tama-pixel" id="tama-sprite"></div>
+                                    <div class="tama-poo"  id="tama-poo" hidden></div>
+                                    <div class="tama-zzz"  id="tama-zzz" hidden>Zzz</div>
+                                    <div class="tama-icon-bubble" id="tama-bubble" hidden></div>
+                                </div>
+                                <div class="tama-bars">
+                                    <div class="tbar"><span>🍔</span><div class="tbar-track"><div class="tbar-fill" id="bar-hunger"></div></div></div>
+                                    <div class="tbar"><span>🎈</span><div class="tbar-track"><div class="tbar-fill" id="bar-happy"></div></div></div>
+                                    <div class="tbar"><span>⚡</span><div class="tbar-track"><div class="tbar-fill" id="bar-energy"></div></div></div>
+                                    <div class="tbar"><span>🛁</span><div class="tbar-track"><div class="tbar-fill" id="bar-clean"></div></div></div>
+                                    <div class="tbar"><span>❤️</span><div class="tbar-track"><div class="tbar-fill" id="bar-health"></div></div></div>
+                                    <div class="tbar"><span>📚</span><div class="tbar-track"><div class="tbar-fill" id="bar-discipline"></div></div></div>
+                                </div>
+                            </div>
+
+                            <!-- Menu icons row -->
+                            <div class="tama-menu" id="tama-menu" hidden>
+                                <button class="tama-mi" data-action="feed"     title="Feed">🍔</button>
+                                <button class="tama-mi" data-action="snack"    title="Snack">🍰</button>
+                                <button class="tama-mi" data-action="play"     title="Play">🎮</button>
+                                <button class="tama-mi" data-action="bath"     title="Bath">🛁</button>
+                                <button class="tama-mi" data-action="sleep"    title="Toggle sleep">💡</button>
+                                <button class="tama-mi" data-action="medicine" title="Medicine">💊</button>
+                                <button class="tama-mi" data-action="scold"    title="Discipline">📣</button>
+                                <button class="tama-mi" data-action="status"   title="Status">📊</button>
+                            </div>
+
+                            <!-- Mini-game overlay -->
+                            <div class="tama-mini" data-view="mini" hidden>
+                                <p class="tama-line">Higher or Lower?</p>
+                                <div class="mini-card" id="mini-card">?</div>
+                                <div class="mini-row">
+                                    <button class="btn btn--ghost" data-mini="lower">▼ Lower</button>
+                                    <button class="btn btn--ghost" data-mini="higher">▲ Higher</button>
+                                </div>
+                                <p class="mini-score" id="mini-score">Round 1 / 5</p>
+                            </div>
+
+                            <!-- Status modal -->
+                            <div class="tama-status-modal" data-view="status" hidden>
+                                <h3 class="tama-line">Status</h3>
+                                <ul id="tama-status-list"></ul>
+                                <button class="btn" data-close-status>Back</button>
+                            </div>
+
+                            <!-- Death view -->
+                            <div class="tama-view tama-view--dead" data-view="dead" hidden>
+                                <div class="tama-pixel ghost-stage"></div>
+                                <p class="tama-line">Goodbye, friend.</p>
+                                <p class="tama-sub" id="tama-dead-summary"></p>
+                                <button class="btn" id="tama-revive">Hatch a new egg</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tama-buttons">
+                        <button class="tama-btn" data-btn="A" type="button">A</button>
+                        <button class="tama-btn tama-btn--center" data-btn="B" type="button">B</button>
+                        <button class="tama-btn" data-btn="C" type="button">C</button>
+                    </div>
+
+                    <div class="tama-brand">our ever lasting memories</div>
+                </div>
+
+                <aside class="tama-instructions">
+                    <h3>How to play</h3>
+                    <ul>
+                        <li><b>A</b> — open / move through the menu</li>
+                        <li><b>B</b> — confirm / select</li>
+                        <li><b>C</b> — back / cancel</li>
+                        <li>Stats decrease over time, even when you're away.</li>
+                        <li>Feed, play, bath, give medicine when sick (💊), and scold (📣) when poo isn't cleaned.</li>
+                        <li>Pet grows: <em>Egg → Baby → Child → Teen → Adult → Elder</em>. Care well — outcomes change!</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="site.js" defer></script>
+    <script src="polly.js" defer></script>
+    <script src="tama.js" defer></script>
+    <script>
+        // Tab switcher
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.game-tab');
+            const panels = document.querySelectorAll('.game-panel');
+            tabs.forEach(t => t.addEventListener('click', () => {
+                tabs.forEach(x => { x.classList.remove('is-active'); x.setAttribute('aria-selected', 'false'); });
+                panels.forEach(p => { p.classList.remove('is-active'); p.hidden = true; });
+                t.classList.add('is-active'); t.setAttribute('aria-selected', 'true');
+                const panel = document.getElementById(t.dataset.target);
+                panel.classList.add('is-active'); panel.hidden = false;
+                if (window.OELM && OELM.blip) OELM.blip(660 + Math.random() * 200, 0.08, 'triangle');
+            }));
+        });
+    </script>
+</body>
+</html>

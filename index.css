@@ -1,276 +1,256 @@
-/* General reset and box sizing */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* ==========================================================================
+   index.css — homepage styles. Relies on theme.css for tokens & shared bits.
+   ========================================================================== */
 
-/* Body styling */
 body {
-    background-image: url('Milestone/Index\ Body\ Background.jpg'); /* Replace with the path to your image */
-    background-size: cover; /* Ensures the image covers the entire area */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    color: #000000; /* Spotify green for text */
-    font-family: 'Arial', sans-serif;
-    margin: 0px;
-    padding: 0px;
-    padding-bottom: 120px;
+    background:
+        linear-gradient(160deg, rgba(255, 245, 250, 0.6), rgba(255, 200, 222, 0.45) 40%, rgba(255, 240, 230, 0.55) 100%),
+        url('Milestone/Index Body Background.jpg') center/cover no-repeat fixed;
+    color: var(--fg);
 }
 
-/* Navigation bar styling */
-ul {
-    list-style-type: none;
+.home { max-width: 1180px; margin: 0 auto; padding: 0 var(--sp-5) var(--sp-8); }
+
+/* ----------------------------- Hero ----------------------------------- */
+
+.hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: var(--sp-6);
+    align-items: center;
+    padding: clamp(48px, 8vw, 96px) var(--sp-3) var(--sp-7);
+}
+
+.hero__inner { position: relative; z-index: 2; }
+.hero__eyebrow {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: var(--r-pill);
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--pink-700);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+    letter-spacing: 0.6px;
+    margin-bottom: var(--sp-4);
+    border: 1px solid var(--border-soft);
+}
+.hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 6.6vw, 4.6rem);
+    line-height: 1.05;
+    color: var(--plum);
+    margin: 0 0 var(--sp-4);
+    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.55);
+}
+.hero__heart {
+    display: inline-block;
+    color: var(--pink-600);
+    transform-origin: center;
+    animation: heartbeat 1.5s var(--ease-bounce) infinite;
+    margin: 0 6px;
+}
+.hero__sub {
+    font-size: var(--fs-lg);
+    color: var(--fg-muted);
+    max-width: 46ch;
+    margin: 0 0 var(--sp-5);
+}
+.hero__cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* Decorative locket and floating petals */
+.hero__art {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 420px;
+    justify-self: center;
+}
+.hero__locket {
+    position: absolute;
+    inset: 12% 12%;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 30% 30%, #fff, rgba(255, 200, 222, 0.95) 60%, var(--pink-500) 100%);
+    box-shadow:
+        inset 0 -20px 40px rgba(217, 77, 148, 0.4),
+        inset 0 12px 30px rgba(255, 255, 255, 0.7),
+        0 24px 50px rgba(217, 77, 148, 0.45);
+    animation: floaty 6s var(--ease-out) infinite;
+    display: grid;
+    place-items: center;
+}
+.hero__locket::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 255, 255, 0.6);
+    animation: spin 24s linear infinite;
+}
+.hero__locket::after {
+    content: '♥';
+    position: absolute;
+    top: -22px;
+    color: var(--pink-600);
+    font-size: 36px;
+    text-shadow: 0 4px 12px rgba(217, 77, 148, 0.4);
+}
+.locket-face {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    color: var(--plum);
     display: flex;
-    gap: 10px;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Keep the nav items aligned in the center vertically */
-    position: fixed;
-    top: 0; /* Stick to the top */
-    left: 50%;
-    transform: translateX(-50%); /* Center horizontally */
-    width: 100%; /* Full width */
-    background-color:  #ef93c9;
-    padding: 20px;
-    z-index: 10; /* Ensure it stays on top */
-    margin: 0;
+    align-items: center;
+    gap: 6px;
+    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.6);
+}
+.locket-face .amp { color: var(--pink-600); }
+
+@keyframes floaty {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50%      { transform: translateY(-14px) rotate(2deg); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.petal {
+    position: absolute;
+    width: 18px; height: 22px;
+    background: linear-gradient(140deg, #fff, var(--pink-300));
+    border-radius: 60% 40% 60% 40% / 70% 60% 40% 30%;
+    box-shadow: 0 6px 14px rgba(217, 77, 148, 0.25);
+    animation: petalFloat 9s var(--ease-out) infinite;
+    opacity: 0.85;
+}
+.petal.p1 { top: 6%;  left: 8%;  animation-delay: -1s; }
+.petal.p2 { top: 70%; left: 4%;  animation-delay: -3s; transform: rotate(40deg); }
+.petal.p3 { top: 15%; right: 6%; animation-delay: -5s; transform: rotate(-30deg); }
+.petal.p4 { bottom: 8%; right: 12%; animation-delay: -7s; transform: rotate(15deg); }
+@keyframes petalFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-22px) rotate(20deg); }
 }
 
-/* Adding space below the header */
+@media (max-width: 880px) {
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .hero__inner { order: 2; }
+    .hero__sub { margin-inline: auto; }
+    .hero__cta { justify-content: center; }
+    .hero__art { order: 1; max-width: 280px; }
+}
+
+/* --------------------------- Features grid ---------------------------- */
+
 .features {
-    margin-top: 100px; /* Adjust this value to increase/decrease space below the header */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-5);
+    padding: var(--sp-6) 0;
 }
 
-/* Other styles remain unchanged */
-li {
-    background-color: #ee89c4;
-    padding: 10px 20px;
-    border-radius: 10px;
-    transition: background-color 0.3s, border-radius 0.3s, color 0.1s;
-    cursor: pointer;
-    color: black;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow to list items */
-}
-
-li:hover {
-    background-color: rgb(159, 108, 4); /* Background color on hover */
-    border-radius: 20px;
-    color: white;
-}
-
-ul li a {
-    color: inherit; /* Inherit color from parent (li) */
-    text-decoration: none;
-    transition: color 0.3s ease-in-out; /* Smooth color transition */
-}
-
-ul li a:hover {
-    color: white; /* Change text color to white on hover */
-}
-
-/* Features Section */
-.features {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 20px;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
-    text-align: center;
-}
-
-/* Individual figure styling */
 .features figure {
-    flex: 1 1 30%; /* Make each figure flexible, 30% width */
-    margin: 10px;
-    border-radius: 10px;
+    position: relative;
+    margin: 0;
+    border-radius: var(--r-lg);
     overflow: hidden;
-    background-color: #ef93c9; /* Background for figure */
-    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
-    padding: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow effect for figure */
+    background: var(--surface-strong);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--dur-mid) var(--ease-out), box-shadow var(--dur-mid);
+}
+.features figure:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+.features figure a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .features img {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform var(--dur-slow) var(--ease-out);
 }
-
-/* Figure caption styling */
-.features figcaption {
-    padding: 10px 0;
-    font-size: 1.1em;
-    color: white;
-    font-weight: normal; /* Set initial font weight */
-    transition: transform 0.3s ease-in-out, font-weight 0.3s ease-in-out; /* Transition for scaling and weight */
-    font-family: 'Arial', sans-serif; /* Change to desired font */
-    text-decoration: none;
-}
-
-/* Hover Effect for figure */
-.features figure:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
-}
-
-/* Hover Effect for caption */
-.features figure:hover figcaption {
-    transform: scale(1.1); /* Grow slightly on hover */
-    font-weight: bold; /* Make bold on hover */
-}
-
-/* Unbold the second figure caption on hover */
-.features figure:nth-of-type(2):hover figcaption {
-    font-weight: normal; /* Set to normal when hovering over the second figure */
-}
-
-/* Caption link styles */
-.features figcaption a {
-    text-decoration: none;
-    color: white; /* White link color */
-    transition: color 0.3s ease-in-out; /* Smooth transition */
-}
-
-.features figcaption a:hover {
-    text-decoration: underline; /* Underline link on hover */
-}
+.features figure:hover img { transform: scale(1.05); }
 
 .features figcaption {
-    text-decoration: none; /* Ensure no underline for normal captions */
-    font-weight: normal; /* Default font weight */
+    padding: var(--sp-4) var(--sp-5);
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.9));
+}
+.features figcaption span {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--plum);
+}
+.features figcaption small {
+    display: block;
+    color: var(--fg-muted);
+    font-size: var(--fs-sm);
+    margin-top: 2px;
 }
 
-/* Media Queries for Smaller Screens */
-@media (max-width: 768px) {
-    .features figure {
-        flex: 1 1 45%; /* Resize for smaller screens */
-    }
+.features .love-note {
+    padding: var(--sp-5) var(--sp-5) var(--sp-6);
+    background: linear-gradient(160deg, #fff, var(--pink-50));
+    height: 100%;
+}
+.features .love-note p { font-size: var(--fs-md); color: var(--fg); margin-bottom: var(--sp-3); }
+.love-note__title { font-size: 1.7rem; color: var(--pink-700); margin-bottom: var(--sp-2)!important; }
+.love-note__sign  { font-size: 1.5rem; color: var(--plum); text-align: right; margin-top: var(--sp-3); }
+.features .hero-note { background: transparent; }
+
+@media (max-width: 880px) {
+    .features { grid-template-columns: 1fr 1fr; }
+    .features .hero-note { grid-column: 1 / -1; order: -1; }
+}
+@media (max-width: 540px) {
+    .features { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 500px) {
-    .features {
-        flex-direction: column; /* Stack items vertically on small screens */
-    }
+/* --------------------------- Search section --------------------------- */
 
-    .features figure {
-        flex: 1 1 100%; /* Full width on small screens */
-    }
+.search-section {
+    text-align: center;
+    margin-top: var(--sp-6);
+    padding: var(--sp-7) var(--sp-5);
+    background: var(--surface-glass);
+    border-radius: var(--r-xl);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(6px);
 }
+.search-section h2 { color: var(--plum); margin-bottom: var(--sp-2); font-size: clamp(2rem, 4vw, 2.6rem); }
+.search-section p { margin-bottom: var(--sp-4); }
 
-/* Search Container */
 .search-container {
     display: flex;
-    flex-direction: column;
+    gap: 10px;
     justify-content: center;
-    align-items: center;
-    margin-top: 40px; /* Space above the search bar */
+    flex-wrap: wrap;
+    max-width: 560px;
+    margin: 0 auto;
 }
-
 .search-box {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 300px;
-    margin-bottom: 10px; /* Space between input and button */
+    flex: 1 1 280px;
+    padding: 12px 18px;
+    border-radius: var(--r-pill);
+    border: 1.5px solid var(--border-soft);
+    background: rgba(255, 255, 255, 0.96);
+    font: inherit;
+    color: var(--fg);
+    transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
 }
-
-.search-button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #1DB954; /* Spotify green */
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+.search-box:focus {
+    outline: none;
+    border-color: var(--pink-500);
+    box-shadow: 0 0 0 4px rgba(239, 111, 174, 0.18);
 }
+.search-button { white-space: nowrap; }
 
-.search-button:hover {
-    background-color: #1ED760; /* Lighter green on hover */
-}
-
-.milestone {
-    display: flex;
-    justify-content: center; /* Center the figures */
-    gap: 20px;
-    padding: 20px;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
-    text-align: center;
-}
-
-/* Individual figure styling */
-.milestone figure {
-    flex: 0 1 200px; /* Set a fixed width for figures */
-    margin: 10px;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #ef93c9; /* Background for figure */
-    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
-    padding: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow effect for figure */
-}
-
-.milestone img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-/* Figure caption styling */
-.milestone figcaption {
-    padding: 10px 0;
-    font-size: 1.1em;
-    color: white;
-    font-weight: normal; /* Set initial font weight */
-    transition: transform 0.3s ease-in-out, font-weight 0.3s ease-in-out; /* Transition for scaling and weight */
-    font-family: 'Arial', sans-serif; /* Change to desired font */
-    text-decoration: none;
-}
-
-/* Hover Effect for figure */
-.milestone figure:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
-}
-
-/* Hover Effect for caption */
-.milestone figure:hover figcaption {
-    transform: scale(1.1); /* Grow slightly on hover */
-    font-weight: bold; /* Make bold on hover */
-}
-
-/* Unbold the second figure caption on hover */
-.milestone figure:nth-of-type(2):hover figcaption {
-    font-weight: normal; /* Set to normal when hovering over the second figure */
-}
-
-/* Caption link styles */
-.milestone figcaption a {
-    text-decoration: none;
-    color: white; /* White link color */
-    transition: color 0.3s ease-in-out; /* Smooth transition */
-}
-
-.milestone figcaption a:hover {
-    text-decoration: underline; /* Underline link on hover */
-}
-
-.milestone figcaption {
-    text-decoration: none; /* Ensure no underline for normal captions */
-    font-weight: normal; /* Default font weight */
-}
-
-/* Media Queries for Smaller Screens */
-@media (max-width: 768px) {
-    .milestone figure {
-        flex: 1 1 40%; /* Resize for smaller screens */
-    }
-}
-
-@media (max-width: 500px) {
-    .milestone {
-        flex-direction: column; /* Stack items vertically on small screens */
-        align-items: center; /* Center the figures vertically */
-    }
-
-    .milestone figure {
-        flex: 1 1 90%; /* Full width on small screens */
-    }
+#searchResults {
+    margin-top: var(--sp-4);
+    color: var(--pink-700);
+    font-style: italic;
+    min-height: 1em;
 }
